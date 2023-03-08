@@ -9,6 +9,9 @@ const removeNewLine = buffer => {
   return buffer.toString().replace("\n", "");
 };
 
+let lastID = childProcess.execSync("git rev-parse --short HEAD^");
+let currentID = childProcess.execSync("git rev-parse --short HEAD");
+
 module.exports = merge(common, {
   mode: "production",
   devtool: "source-map",
@@ -24,7 +27,9 @@ module.exports = merge(common, {
         Auth.name :: ${removeNewLine(
           childProcess.execSync("git config user.name")
         )}
-       
+        Diff.info :: ${removeNewLine(
+          childProcess.execSync(`git diff ${lastID} ${currentID}`)
+        )}
       `,
     }),
   ],
