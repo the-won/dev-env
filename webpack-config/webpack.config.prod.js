@@ -27,9 +27,8 @@ module.exports = merge(common, {
         Auth.name :: ${removeNewLine(
           childProcess.execSync("git config user.name")
         )}
-        Diff.info :: ${removeNewLine(
-          childProcess.execSync(`git diff ${lastID} ${currentID}`)
-        )}
+      
+       
       `,
     }),
   ],

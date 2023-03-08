@@ -6,5 +6,6 @@
 
 .box2 {
   display: flex;
-  gap: 3px;
+  gap: 5px;
+  align-items: center;
 }
