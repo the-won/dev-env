@@ -1,0 +1,24 @@
+@use "../abstracts/" as *;
+
+@mixin tab-container {
+  .tab {
+    display: flex;
+    list-style: none;
+    background: $primary-bg-color;
+    li {
+      flex: 1;
+      a {
+        display: block;
+        padding: 10px 0;
+        text-decoration: none;
+        color: $white;
+        text-align: center;
+        font-size: em(17px, 15px);
+      }
+    }
+  }
+}
+
+.tab-container {
+  @include tab-container;
+}

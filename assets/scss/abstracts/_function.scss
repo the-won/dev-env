@@ -1,0 +1,15 @@
+@use "./variables" as *;
+
+/// @param {number} $value : 단위가 포함된 숫자 유형의 값
+/// @return {number} : 단위를 제거한 숫자 값
+
+@function remove-unit($value) {
+  @return ($value / ($value * 0 + 1));
+}
+
+/// @param {string, string} : $px, $base
+/// @return {number}
+
+@function em($px, $base: $base-em-size) {
+  @return (remove-unit($px / $base)) * 1em;
+}

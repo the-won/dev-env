@@ -1,0 +1,17 @@
+@use "../../components/tab" as *;
+
+.tab-container__lina {
+  position: relative;
+  @include tab-container;
+  .tab {
+    background-color: #0c1780;
+    li a {
+      color: rgb(211, 126, 22);
+    }
+  }
+  .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}

@@ -1,0 +1,68 @@
+/// 컬러 설정
+///
+/// All colors
+$blue: #0d6efd;
+$blue-100: blue;
+$blue-200: blue;
+$blue-300: blue;
+$blue-400: blue;
+$blue-500: blue;
+
+$indigo: #6610f2;
+$indigo-100: #6610f2;
+$indigo-200: #6610f2;
+
+$purple: #6f42c1;
+$purple-100: #6f42c1;
+$purple-200: #6f42c1;
+
+$red: #dc3545;
+$red-100: #dc3545;
+$red-200: #dc3545;
+
+$orange: #fd7214;
+$orange-100: #fd7214;
+$orange-200: #fd7214;
+
+$yellow: #ffc107;
+$yellow-100: #ffc107;
+$yellow-200: #ffc107;
+
+$green: #198754;
+$green-100: #198754;
+$green-200: #198754;
+
+$gray: #adb5bd;
+$gray-adb: #adb5bd;
+$gray-200: #adb5bd;
+
+$black: #000;
+
+$white: #fff;
+
+/// Theme colors
+// Body - Default foreground and background
+$body-bg-color: $black;
+$body-text-color: $blue;
+$body-page-bg-color: $green-100;
+
+// Primary — Main theme color, used for hyperlinks, focus styles, and component and form active states.
+$primary-bg-color: $orange;
+$primary-text-color: $blue;
+$primary-border-color: $black;
+
+// Secondary — Use the color option for lighter text. Use the bg option for dividers and to indicate disabled component states.
+$secondary-bg-color: $black;
+$secondary-text-color: $blue;
+$secondary-border-color: $blue;
+
+// Emphasis — For higher contrast text. Not applicable for backgrounds.
+$emphasis-bg-color: $blue-200;
+
+// Success — Theme color used for positive or successful actions and information.
+
+// Danger — Theme color used for errors and dangerous actions.
+
+// Warning — Theme color used for non-destructive warning messages.
+
+// Info — Theme color used for neutral and informative content.
