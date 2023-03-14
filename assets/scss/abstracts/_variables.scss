@@ -1,37 +1,67 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-html {
-  font-size: 16px;
-}
+@use "./color" as *;
+@use "./function" as *;
+
 // 단위 설정
 $base-em-size: 16px;
 
-// tailwind
+// scss-docs-start spacing-variables-maps
+$spacing: () !default;
+$spacing: map-merge(
+  (
+    1: 1 / 3.6 + vw,
+    2: 2 / 3.6 + vw,
+    3: 3 / 3.6 + vw,
+    4: 4 / 3.6 + vw,
+    5: 5 / 3.6 + vw,
+    6: 6 / 3.6 + vw,
+    7: 7 / 3.6 + vw,
+    8: 8 / 3.6 + vw,
+    9: 9 / 3.6 + vw,
+    10: 10 / 3.6 + vw,
+    11: 11 / 3.6 + vw,
+    12: 12 / 3.6 + vw,
+    13: 13 / 3.6 + vw,
+  ),
+  $spacing
+);
 
-.flex {
-  display: flex;
-}
-.flex-row {
-  flex-direction: row;
-}
-.flex-row-revers {
-  flex-direction: row-reverse;
-}
-.flex-column {
-  flex-direction: column;
-}
-.flex-column-reverse {
-  flex-direction: column-reverse;
-}
+// scss-docs-start border-variables
+$border-width: 1px !default;
+$border-widths: (
+  1: 1px,
+  2: 2px,
+  3: 3px,
+  4: 4px,
+  5: 5px,
+) !default;
+$border-style: solid !default;
 
-.text-left {
-  text-align: left;
-}
-.text-center {
-  text-align: center;
-}
-.text-right {
-  text-align: right;
-}
+// scss-docs-start background-colors-variables
+$text-colors: () !default;
+$text-colors: map-merge(
+  (
+    primary: $red,
+    secondary: $yellow,
+  ),
+  $text-colors
+);
+
+// scss-docs-start border-colors-variables
+$border-colors: () !default;
+$border-colors: map-merge(
+  (
+    primary: $red,
+    secondary: $yellow,
+  ),
+  $border-colors
+);
+
+// scss-docs-start background-colors-variables
+$background-colors: () !default;
+$background-colors: map-merge(
+  (
+    primary: $red,
+    secondary: $yellow,
+  ),
+  $background-colors
+);

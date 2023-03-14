@@ -1,0 +1,179 @@
+@use "./variables" as *;
+@use "./color" as *;
+@use "./function" as *;
+
+$utils: () !default;
+
+$utils: map-merge(
+  (
+    "display": (
+      property: display,
+      values: (
+        inline: inline,
+        inline-block: inline-block,
+        block: block,
+        grid: grid,
+        table: table,
+        table-row: table-row,
+        table-cell: table-cell,
+        flex: flex,
+        inline-flex: inline-flex,
+        none: none,
+      ),
+    ),
+    "width": (
+      property: width,
+      values: (
+        25: 25%,
+        50: 50%,
+        75: 75%,
+        100: 100%,
+        auto: auto,
+      ),
+    ),
+    "height": (
+      property: height,
+      values: (
+        25: 25%,
+        50: 50%,
+        75: 75%,
+        100: 100%,
+        auto: auto,
+      ),
+    ),
+    "color": (
+      property: color,
+      values: $text-colors,
+    ),
+    "background-color": (
+      property: background-color,
+      values: $background-colors,
+    ),
+    "opacity": (
+      property: opacity,
+      values: (
+        0: 0,
+        25: 0.25,
+        50: 0.5,
+        75: 0.75,
+        100: 1,
+      ),
+    ),
+    "overflow": (
+      property: overflow,
+      values: (
+        auto: auto,
+        hidden: hidden,
+        visible: visible,
+        scroll: scroll,
+      ),
+    ),
+    "font-size": (
+      property: font-size,
+      values: map-merge($spacing, ()),
+    ),
+    "align": (
+      property: vertical-align,
+      values: (
+        top: top,
+        middle: middle,
+        bottom: bottom,
+      ),
+    ),
+    "float": (
+      property: float,
+      values: (
+        left: left,
+        right: right,
+        none: none,
+      ),
+    ),
+    "flex-wrap": (
+      property: flex-wrap,
+      values: (
+        wrap: wrap,
+        nowrap: nowrap,
+        wrap-reverse: wrap-reverse,
+      ),
+    ),
+    "justify-content": (
+      property: justify-content,
+      values: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        between: space-between,
+        around: space-around,
+        evenly: space-evenly,
+      ),
+    ),
+    "align-items": (
+      property: align-items,
+      values: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        baseline: baseline,
+        stretch: stretch,
+      ),
+    ),
+    "align-content": (
+      property: align-content,
+      values: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        between: space-between,
+        around: space-around,
+        stretch: stretch,
+      ),
+    ),
+    "rounded": (
+      property: border-radius,
+      "values": map-merge($spacing, ()),
+    ),
+    "border": (
+      property: border,
+      values: (
+        all: #{$border-width} #{$border-style} #{$black},
+      ),
+    ),
+    "border-color": (
+      property: border-color,
+      values: $border-colors,
+    ),
+    "pt": (
+      property: padding-top,
+      "values": $spacing,
+    ),
+    "pb": (
+      property: padding-bottom,
+      "values": $spacing,
+    ),
+    "pl": (
+      property: padding-left,
+      "values": $spacing,
+    ),
+    "pr": (
+      property: padding-right,
+      "values": $spacing,
+    ),
+  ),
+  $utils
+);
+
+$_property: "";
+
+@each $key, $value in $utils {
+  @each $_key, $_vaule in $value {
+    @if ($_key == property) {
+      $_property: $_vaule;
+    } @else {
+      @each $v_key, $v_values in $_vaule {
+        .#{ $key }-#{ $v_key } {
+          #{ $_property }: #{$v_values};
+        }
+      }
+    }
+  }
+}

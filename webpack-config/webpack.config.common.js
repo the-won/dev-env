@@ -43,7 +43,7 @@ module.exports = {
   output: {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, OUTPUT_DIR),
-    library: "common",
+    library: "universe",
     clean: true,
   },
 
