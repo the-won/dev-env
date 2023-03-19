@@ -1,4 +1,6 @@
 @forward "../abstracts/mixins/gradients";
+@forward "../abstracts/mixins/initialize";
+@forward "../abstracts/mixins/btn";
 
 @mixin blind {
   position: absolute;

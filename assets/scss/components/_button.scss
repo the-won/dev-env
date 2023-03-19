@@ -1,0 +1,60 @@
+@use "../abstracts" as *;
+
+.btn {
+  display: inline-block;
+  padding: $btn-padding-y $btn-padding-x;
+  font-size: $btn-font-size;
+  line-height: $line-height-base;
+  color: #eee;
+  text-align: center;
+  vertical-align: middle;
+  white-space: normal;
+  background-color: transparent;
+  border: 1px solid transparent;
+  text-decoration: none;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+//
+// Button Sizes
+//
+.btn-lg {
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $font-size-lg);
+}
+
+.btn-sm {
+}
+
+//
+// Button Outline
+//
+.btn-outline-primary {
+}
+
+.btn-group {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+
+  > .btn {
+    position: relative;
+    flex: 1 1 auto;
+  }
+}
+
+// scss-docs-start btn-variant-loops
+@each $color, $value in $theme-colors {
+  .btn-#{$color } {
+    @if ($color == "light") {
+      @include button-variant($value, $value, $black);
+    } @else {
+      @include button-variant($value, $value, $white);
+    }
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .btn-outline-#{$color } {
+    @include button-outline-variant($value);
+  }
+}

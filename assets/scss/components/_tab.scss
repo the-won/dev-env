@@ -24,7 +24,6 @@
 }
 
 .box {
-  @include box;
   @include gradient-x();
   z-index: 10;
 }

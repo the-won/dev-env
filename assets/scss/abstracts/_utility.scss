@@ -70,9 +70,44 @@ $utils: map-merge(
     ),
     "font-size": (
       property: font-size,
-      values: map-merge($spacing, ()),
+      values: map-merge($font-sizes, ()),
     ),
-    "align": (
+    "font-weight": (
+      property: font-weight,
+      values: (
+        light: 300,
+        normal: 400,
+        bold: 700,
+      ),
+    ),
+    "line-height": (
+      property: line-height,
+      values: (
+        1: 1em,
+        -1: 1.1em,
+        -2: 1.2em,
+        -3: 1.3em,
+        -4: 1.4em,
+        -5: 1.5em,
+      ),
+    ),
+    "text-align": (
+      property: text-align,
+      values: (
+        left: left,
+        right: right,
+        center: center,
+      ),
+    ),
+    "text-decoration": (
+      property: text-decoration,
+      values: (
+        none: none,
+        underline: underline,
+        line-through: line-through,
+      ),
+    ),
+    "vertical-align": (
       property: vertical-align,
       values: (
         top: top,
@@ -86,6 +121,15 @@ $utils: map-merge(
         left: left,
         right: right,
         none: none,
+      ),
+    ),
+    "flex-direction": (
+      property: flex-direction,
+      values: (
+        row: row,
+        column: column,
+        row-reverse: row-reverse,
+        column-reverse: column-reverse,
       ),
     ),
     "flex-wrap": (
@@ -142,21 +186,75 @@ $utils: map-merge(
       property: border-color,
       values: $border-colors,
     ),
+    "padding": (
+      property: padding,
+      "values": map-merge($spacing, ()),
+    ),
     "pt": (
       property: padding-top,
-      "values": $spacing,
+      "values": map-merge($spacing, ()),
     ),
     "pb": (
       property: padding-bottom,
-      "values": $spacing,
+      "values": map-merge($spacing, ()),
     ),
     "pl": (
       property: padding-left,
-      "values": $spacing,
+      "values": map-merge($spacing, ()),
     ),
     "pr": (
       property: padding-right,
-      "values": $spacing,
+      "values": map-merge($spacing, ()),
+    ),
+    "margin": (
+      property: margin,
+      "values": map-merge($spacing, ()),
+    ),
+    "mt": (
+      property: margin-top,
+      "values": map-merge($spacing, ()),
+    ),
+    "mb": (
+      property: margin-bottom,
+      "values": map-merge($spacing, ()),
+    ),
+    "ml": (
+      property: margin-left,
+      "values": map-merge($spacing, ()),
+    ),
+    "mr": (
+      property: margin-right,
+      "values": map-merge($spacing, ()),
+    ),
+    "gap": (
+      property: gap,
+      "values": map-merge($spacing, ()),
+    ),
+    "position": (
+      property: position,
+      values: (
+        static: static,
+        relative: relative,
+        absolute: absolute,
+        fixed: fixed,
+        sticky: sticky,
+      ),
+    ),
+    "top": (
+      property: top,
+      values: $position-values,
+    ),
+    "bottom": (
+      property: bottom,
+      values: $position-values,
+    ),
+    "left": (
+      property: left,
+      values: $position-values,
+    ),
+    "right": (
+      property: right,
+      values: $position-values,
     ),
   ),
   $utils

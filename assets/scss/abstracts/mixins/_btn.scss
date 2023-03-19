@@ -1,0 +1,18 @@
+@use "../color" as *;
+@use "../variables" as *;
+
+@mixin button-variant($background, $border, $color) {
+  background-color: #{$background};
+  border-color: #{$border};
+  color: #{$color};
+}
+
+@mixin button-outline-variant($color) {
+  color: $color;
+  border-color: $color;
+}
+
+@mixin button-size($padding-y, $padding-x, $font-size) {
+  padding: $padding-y $padding-x;
+  font-size: $font-size;
+}

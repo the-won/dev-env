@@ -1,4 +1,19 @@
+@use "../abstracts" as *;
+
 .modal {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
+}
+
+.reset {
+  @include normalize();
+  margin-left: 30px;
+  @include gradient-y(rgb(35, 56, 236), pink);
+}
+
+.size {
+  font-size: $font-size-base * 0.875;
+}
+.size2 {
+  font-size: $base-em-size * 0.875;
 }

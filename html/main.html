@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link rel="stylesheet" href="/dist/css/main.bundle.css" />
-    <!-- <link rel="stylesheet" href="./dist/css/main.bundle.css" /> -->
+
     <title>Document</title>
   </head>
   <body style="height: 100vh">
@@ -18,18 +19,71 @@
     </div>
 
     <div
-      class="display-flex width-50 height-25 justify-content-center align-items-center color-primary border-all border-color-secondary pl-10 pr-10 font-size-12"
+      class="display-flex justify-content-center align-items-center font-size-20 background-color-primary pt-9 pb-11 ml-10 width-75 height-50 color-secondary border-all border-color-secondary"
     >
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti non
-      nihil eius quasi praesentium, modi provident vitae cum dolorum ipsam
-      numquam? Et aliquam ipsum amet repellat magnam laboriosam, animi eaque.
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. A deleniti,
+      pariatur officia sapiente illum cum ad quaerat tenetur veniam at nostrum
+      veritatis debitis laudantium fugiat. Laborum ab explicabo sequi
+      voluptatibus!
     </div>
 
-    <div class="modal">
-      <div class="modal__header">
-        <h1 class="modal__heading rounded-10 pt-3 pb-5">heading</h1>
+    <div class="A-component rounded-10">
+      <div class="header">
+        <h2 class="font-size-13">Heading</h2>
       </div>
-      <div class="modal__body"></div>
+      <div class="body">
+        <div class="inner pt-11 pb-11 text-left align-middle">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+            recusandae voluptate soluta vitae? Iusto, ratione dolor quisquam
+            odit aliquid nesciunt ullam perspiciatis suscipit enim sunt facere.
+            Earum atque eveniet cum.
+          </p>
+        </div>
+        <button type="button">button</button>
+      </div>
     </div>
+
+    <a href="" class="btn btn-primary">btn primary</a>
+    <a href="" class="btn btn-danger">btn primary</a>
+    <button type="button" class="btn btn-outline-danger">btn danger</button>
+    <style>
+      ul,
+      li {
+        list-style: none;
+      }
+    </style>
+    <ul class="grid gap-10">
+      <li class="g-col-6 g-col-md-4 g-col-xl-3">
+        <div
+          class="display-flex flex-direction-column border-all rounded-5 border-color-primary overflow-hidden"
+        >
+          <span class="height-25" style="background-color: #999"></span>
+          <div class="display-flex flex-direction-column padding-10">
+            <span class="font-weight-bold">Card title</span>
+            <span class="mt-10"
+              >Some quick example text to build on the card title and make up
+              the bulk of the card's content.</span
+            >
+          </div>
+        </div>
+      </li>
+      <li class="g-col-6 g-col-md-4 g-col-xl-3">
+        <div
+          class="display-flex flex-direction-column border-all rounded-5 border-color-primary overflow-hidden"
+        >
+          <span class="" style="height: 80px; background-color: #999"></span>
+          <div
+            class="pt-15 pl-15 pr-15 pb-15 display-flex flex-direction-column"
+          >
+            <span class="font-weight-bold">Card title</span>
+            <span class="mt-15"
+              >Some quick example text to build on the card title and make up
+              the bulk of the card's content.</span
+            >
+          </div>
+        </div>
+      </li>
+    </ul>
   </body>
 </html>

@@ -23,5 +23,5 @@
 /// @return {number}
 
 @function vw($base) {
-  @return ($base / 360) * 100;
+  @return (($base / 360) * 100) * 1vw;
 }

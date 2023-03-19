@@ -1,0 +1,42 @@
+// 요소의 박스 모델 초기화 설정
+@mixin reset-box() {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+@mixin reset-area() {
+  width: auto;
+  height: auto;
+  background-color: inherit;
+}
+
+// <img /> 요소 초기화 설정
+@mixin reset-img() {
+  border: 0;
+  vertical-align: middle;
+}
+// 하이퍼링크 요소 초기화 설정
+@mixin reset-link() {
+  text-decoration: none;
+  color: inherit;
+}
+// 목록 요소 초기화 설정
+@mixin reset-list() {
+  @include reset-box();
+  list-style-type: none;
+}
+// 폰트 요소 초기화 설정
+@mixin reset-font() {
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+// 모든 요소 초기화 설정
+@mixin normalize() {
+  @include reset-box();
+  @include reset-area();
+  @include reset-img();
+  @include reset-link();
+  @include reset-font();
+}
