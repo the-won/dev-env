@@ -1,0 +1,75 @@
+.action-item {
+  padding: 15px;
+  background: #eee;
+  display: flex;
+  align-items: center;
+  width: 450px;
+}
+
+.action-item p {
+  margin: 0;
+  flex: 1;
+}
+
+.action-item button {
+  margin: 0 0 0 5px;
+}
+
+.dialog {
+  background: rgba(0, 0, 0, 0.8);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dialog .dialog-container {
+  background: #fff;
+  border-radius: 5px;
+  min-width: 300px;
+  max-height: 50vh;
+  padding: 0 15px;
+}
+
+.dialog .dialog-header {
+  border-bottom: 1px solid #eee;
+  padding: 15px 0 10px;
+}
+
+.dialog .dialog-header h3 {
+  margin: 0;
+}
+
+.dialog .dialog-content {
+  overflow: auto;
+  padding: 10px 0;
+}
+
+.dialog .dialog-footer {
+  border-top: 1px solid #eee;
+  padding: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.dialog .dialog-footer button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 3px;
+  border: 1px solid #222;
+  background: none;
+  color: #222;
+  text-transform: uppercase;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.dialog .dialog-footer button.submit-btn {
+  background: #222;
+  color: #fff;
+  margin-left: 15px;
+}
