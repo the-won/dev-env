@@ -1,7 +1,31 @@
 import { BaseComponent } from "./BaseComponent.js";
 
+// export class DialogFrame extends BaseComponent {
+//   constructor() {
+//     super(`<div class="dialog"></div>`);
+//   }
+
+//   addChild(instance) {
+//     instance.attachTo(this.element);
+//   }
+
+//   removeAllChild() {
+//     this.element.replaceChildren();
+//   }
+// }
+
+export class DialogContent extends BaseComponent {
+  constructor(string) {
+    super(string);
+  }
+
+  appendChild(item, selector = ".dialog-content") {
+    this.attachTo(item.element.querySelector(selector));
+  }
+}
+
 export class Dialog extends BaseComponent {
-  constructor(content = "", options = {}) {
+  constructor(options = {}) {
     options = {
       title: "Dialog",
       submitLabel: "Submit",
@@ -25,7 +49,7 @@ export class Dialog extends BaseComponent {
             : ""
         }
         <div class="dialog-content">
-          ${content}
+        
         </div>
         <div class="dialog-footer">
           <button type="button" class="cancel-btn">${
