@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ul,
+      ol {
+        list-style: none;
+      }
+      button {
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        appearance: none;
+        width: 100%;
+        height: 100%;
+      }
+      .tabs {
+        display: flex;
+        gap: 5px;
+      }
+      .tabs > li {
+        flex: 1;
+      }
+      .tabs > li > button {
+        display: block;
+        padding: 12px;
+        border: 1px solid gainsboro;
+      }
+      [role="tab"][aria-selected="true"] {
+        background-color: gainsboro;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-tab1">
+      <ul class="tabs" role="tablist">
+        <li class="active">
+          <button
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="tab-1"
+            tabindex="0"
+          >
+            <span>html</span>
+            <em></em>
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="tab-2"
+            tabindex="-1"
+          >
+            css
+          </button>
+        </li>
+        <li>
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="tab-3"
+            tabindex="-1"
+          >
+            javascript
+          </button>
+        </li>
+      </ul>
+
+      <div
+        class="tab-content"
+        role="tabpanel"
+        tabindex="0"
+        aria-labelledby="tab-1"
+      >
+        tab content 1 Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Omnis architecto dolores culpa odio totam labore quia, eveniet dolor
+        nobis esse debitis velit ex iure provident ullam molestiae corrupti aut?
+        Veritatis?
+        <button type="button" class="btn">btn</button>
+      </div>
+      <div
+        class="tab-content"
+        role="tabpanel"
+        tabindex="0"
+        aria-labelledby="tab-2"
+        hidden="true"
+      >
+        tab content 2
+      </div>
+      <div
+        class="tab-content"
+        role="tabpanel"
+        tabindex="0"
+        aria-labelledby="tab-3"
+        hidden="true"
+      >
+        tab content 3
+      </div>
+    </div>
+
+    <script>
+      class TABS {
+        tabFocus = 0;
+        data = {};
+
+        constructor(selector, options = {}) {
+          this.options = {
+            activeClass: "active",
+            activePerLevel: 1,
+            ...options,
+          };
+          this.tabList = document.querySelector(selector);
+          this.tabs = this.tabList.querySelectorAll("[role='tab']");
+          this.tabPanels = this.tabList.querySelectorAll("[role='tabpanel']");
+
+          this.eventBinding();
+        }
+
+        removeTabs() {
+          this.tabList.querySelectorAll('[aria-selected="true"]').forEach(t => {
+            t.setAttribute("aria-selected", false);
+            this.getParentNode(t, this.options.activePerLevel).classList.remove(
+              this.options.activeClass
+            );
+          });
+        }
+        activeTab(target) {
+          target.setAttribute("aria-selected", true);
+          this.getParentNode(target, this.options.activePerLevel).classList.add(
+            this.options.activeClass
+          );
+
+          return [...this.tabs].findIndex(
+            tab =>
+              tab.parentElement ==
+              this.getParentNode(target, this.options.activePerLevel)
+          );
+          console.log(Idx);
+        }
+        hidePanels() {
+          this.tabPanels.forEach(p => p.setAttribute("hidden", true));
+        }
+        showPanel(target) {
+          let [activePanel] = [...this.tabPanels].filter(p => {
+            if (
+              p.getAttribute("aria-labelledby") ===
+              target.getAttribute("aria-controls")
+            ) {
+              p.removeAttribute("hidden");
+              return p;
+            }
+          });
+          return activePanel;
+        }
+
+        updateData(target, panel, idx) {
+          this.data["$tabs"] = Array.from(this.tabs);
+          this.data["$panels"] = Array.from(this.tabPanels);
+          this.data["$activeTab"] = target;
+          this.data["$activePanel"] = panel;
+          this.data["activIndex"] = idx;
+        }
+
+        changeTabs(_target) {
+          const target = this.findTarget(_target);
+
+          // Remove all current selected tabs
+          this.removeTabs();
+          // Set this tab as selected
+          let idx = this.activeTab(target);
+          // Hide all tab panels
+          this.hidePanels();
+          // Show the selected panel
+          let panel = this.showPanel(target);
+
+          // update data
+          this.updateData(target, panel, idx);
+        }
+
+        keyboardHandler(e) {
+          // Move right
+          if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+            this.tabs[this.tabFocus].setAttribute("tabindex", -1);
+            if (e.key === "ArrowRight") {
+              this.tabFocus++;
+              // If we're at the end, go to the start
+              if (this.tabFocus >= this.tabs.length) {
+                this.tabFocus = 0;
+              }
+              // Move left
+            } else if (e.key === "ArrowLeft") {
+              this.tabFocus--;
+              // If we're at the start, move to the end
+              if (this.tabFocus < 0) {
+                this.tabFocus = this.tabs.length - 1;
+              }
+            }
+
+            this.tabs[this.tabFocus].setAttribute("tabindex", 0);
+            this.tabs[this.tabFocus].focus();
+          }
+        }
+
+        eventBinding() {
+          this.tabs.forEach(tab => {
+            tab.addEventListener("click", e => {
+              this.changeTabs(e.target);
+              this.tabList.dispatchEvent(new Event("tab-something"));
+            });
+          });
+
+          this.tabList.addEventListener(
+            "keydown",
+            this.keyboardHandler.bind(this)
+          );
+        }
+
+        onSomething = cb => {
+          this.tabList.addEventListener("tab-something", () => cb(this.data));
+        };
+
+        findTarget(element) {
+          let _target = element;
+          while (_target.getAttribute("role") == null) {
+            _target = _target.parentElement;
+          }
+          return _target;
+        }
+
+        getParentNode(element, level) {
+          while (level-- > 0) {
+            element = element.parentNode;
+            if (!element) return null;
+          }
+          return element;
+        }
+
+        setActiveTab(n = 0) {
+          if (n >= this.tabs.length || n < 0)
+            throw new Error("parameter is not valid");
+
+          this.tabs.forEach((tab, index) => {
+            index === n ? this.changeTabs(tab) : "";
+          });
+        }
+      }
+
+      const tabs = new TABS(".js-tab1", (options = { activePerLevel: 1 }));
+
+      let temp = null;
+      tabs.onSomething(data => {
+        console.log(data);
+
+        temp = data.activeTab;
+      });
+
+      document.querySelector(".btn").addEventListener("click", () => {
+        console.log("clicked");
+        tabs.setActiveTab(1);
+        console.log(temp);
+      });
+    </script>
+  </body>
+</html>

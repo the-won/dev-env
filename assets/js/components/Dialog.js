@@ -24,10 +24,58 @@ export class DialogContent extends BaseComponent {
   }
 }
 
+export class LayerpopHeader extends BaseComponent {
+  closeListener;
+
+  constructor(title, btnEl) {
+    super(`
+    <div class="dialog-header">
+      <h3 class="title"></h3>
+      ${btnEl ? `<button type="button" class="close">닫기</button>` : ""}
+    </div>`);
+
+    if (title) this.element.querySelector(".title").textContent = title;
+
+    if (btnEl) {
+      const closeBtn = this.element.querySelector(".close");
+      closeBtn.addEventListener("click", () => {
+        this.closeListener && this.closeListener();
+      });
+    }
+  }
+
+  setCloseListener(listener) {
+    this.closeListener = listener;
+  }
+}
+export class LayerpopHeader1 extends BaseComponent {
+  closeListener;
+
+  constructor(title) {
+    super(`
+    <div class="dialog-header">
+      <h3 class="title"></h3>
+      <button type="button" class="close">닫기777</button>
+    </div>`);
+
+    if (title) this.element.querySelector(".title").textContent = title;
+
+    const closeBtn = this.element.querySelector(".close");
+    closeBtn.addEventListener("click", () => {
+      this.closeListener && this.closeListener();
+    });
+  }
+
+  setCloseListener(listener) {
+    this.closeListener = listener;
+  }
+}
+
 export class Dialog extends BaseComponent {
-  constructor(options = {}) {
+  constructor(content = "", options = {}) {
     options = {
       title: "Dialog",
+      headerCloseBtn: true,
       submitLabel: "Submit",
       cancelLabel: "Cancle",
       allowClickOut: true,
@@ -36,20 +84,10 @@ export class Dialog extends BaseComponent {
 
     super(`
       <div class="dialog">
-        <div class="dialog-container" tabindex="0" role="dialog" aria-label="${
-          options.title
-        }">
-        ${
-          options.title
-            ? `
-          <div class="dialog-header">
-            <h3>${options.title}</h3>
-          </div>
-          `
-            : ""
-        }
+        <div class="dialog-container" tabindex="0" role="dialog">
+     
         <div class="dialog-content">
-        
+          ${content}
         </div>
         <div class="dialog-footer">
           <button type="button" class="cancel-btn">${
@@ -65,9 +103,24 @@ export class Dialog extends BaseComponent {
       </div>
     `);
 
+    this.render(options);
+
     this.data = {};
 
     this.eventBinding(options);
+  }
+
+  render(options) {
+    if (options.title) {
+      const header = new LayerpopHeader(options.title, options.headerCloseBtn);
+      header.attachTo(
+        this.element.querySelector(".dialog-container"),
+        "afterbegin"
+      );
+      header.setCloseListener(() => {
+        this.close();
+      });
+    }
   }
 
   eventBinding(options) {
