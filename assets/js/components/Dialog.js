@@ -125,9 +125,10 @@ export class Dialog extends BaseComponent {
 
   eventBinding(options) {
     if (options.allowClickOut) {
-      document.addEventListener("click", e =>
-        this.handleClickOut(e, this.element)
-      );
+      // document.addEventListener("click", e =>
+      //   this.handleClickOut(e, this.element)
+      // );
+      document.addEventListener("click", this.bindHandleClickOut);
     }
 
     this.element.querySelector(".cancel-btn").addEventListener("click", () => {
@@ -149,9 +150,14 @@ export class Dialog extends BaseComponent {
     this.data[key] = value;
   };
 
-  handleClickOut(e, dialogElement) {
-    if (e.target === dialogElement) this.close();
+  handleClickOut(e) {
+    if (e.target == this.element) this.close();
   }
+  bindHandleClickOut(e) {
+    console.log(e.target);
+    Dialog.handleClickOut();
+  }
+  bindHandleClickOut = this.handleClickOut.bind(this);
 
   open() {
     this.attachTo(document.body);
@@ -159,7 +165,11 @@ export class Dialog extends BaseComponent {
 
   close() {
     this.removeFrom(document.body);
-    document.removeEventListener("click", this.handleClickOut);
+    console.log("here");
+    // document.removeEventListener("click", e =>
+    //   this.handleClickOut(e, this.element)
+    // );
+    document.removeEventListener("click", this.bindHandleClickOut);
     this.element.dispatchEvent(new Event("dialog-close"));
   }
 
